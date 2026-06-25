@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation | Ali Haider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --black:        #000000;
+  --black-rich:   #090909;
+  --black-card:   #0f0f0f;
+  --black-soft:   #141414;
+  --black-border: #1e1e1e;
+  --gold:         #d4af37;
+  --gold-light:   #f0c84a;
+  --gold-pale:    #f5e9b0;
+  --gold-dark:    #9a7a0a;
+  --gold-grad:    linear-gradient(135deg, #f5e9b0 0%, #f0c84a 40%, #d4af37 70%, #9a7a0a 100%);
+  --gold-text:    linear-gradient(135deg, #ffe87a 0%, #f0c040 45%, #d4af37 75%, #b89020 100%);
+  --white:        #ffffff;
+  --off-white:    #f5f0e8;
+  --muted:        #888070;
+  --font-cin:   'Cinzel', serif;
+  --font-cor:   'Cormorant Garamond', serif;
+  --font-script:'Pinyon Script', cursive;
+  --font-sans:  'Montserrat', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black-rich);
+  color: var(--white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════
+   TWO-PANEL DOOR OPENING  (like video)
+══════════════════════════════════════ */
+#gate {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  pointer-events: auto;
+  /* nothing on the gate itself — just a container */
+}
+/* Left panel */
+#gate-left {
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: var(--black-card);
+  overflow: hidden;
+  transition: transform 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+  transform-origin: left center;
+  box-shadow: 4px 0 30px rgba(0,0,0,0.8);
+  border-right: 1px solid rgba(212,175,55,0.15);
+}
+/* Right panel */
+#gate-right {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: var(--black-card);
+  overflow: hidden;
+  transition: transform 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+  transform-origin: right center;
+  box-shadow: -4px 0 30px rgba(0,0,0,0.8);
+  border-left: 1px solid rgba(212,175,55,0.15);
+}
+/* When open, panels slide apart */
+#gate.open #gate-left  { transform: translateX(-100%); }
+#gate.open #gate-right { transform: translateX(100%); }
+#gate.gone { display: none; }
+
+/* ── LEFT PANEL CONTENT ── */
+.panel-left-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 16px;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.07) 0%, transparent 65%),
+    var(--black-card);
+}
+
+/* Decorative floral SVG — left panel (dark teal/black botanical) */
+.panel-floral-left {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* The wax seal centred on left panel */
+.door-seal {
+  width: 100px; height: 100px;
+  background: radial-gradient(circle at 38% 35%, #ffe980 0%, #d4af37 45%, #9a7a0a 80%, #4a3800 100%);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border: 3px solid #7a5e00;
+  box-shadow:
+    0 0 0 8px rgba(212,175,55,0.09),
+    0 12px 30px rgba(0,0,0,0.85),
+    inset 0 3px 6px rgba(255,255,255,0.32),
+    inset 0 -2px 4px rgba(0,0,0,0.4);
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+  z-index: 5;
+}
+.door-seal::before {
+  content:''; position:absolute;
+  width:80%; height:80%;
+  border:1.5px dashed rgba(255,255,255,0.22); border-radius:50%;
+}
+.door-seal:hover { transform: scale(1.08); box-shadow: 0 0 0 16px rgba(212,175,55,0.12), 0 18px 36px rgba(0,0,0,0.9), inset 0 3px 6px rgba(255,255,255,0.32); }
+.door-seal span {
+  font-family: var(--font-cin);
+  font-size: 1.55rem; font-weight: 700;
+  color: #1a1000; letter-spacing: 2px; z-index:1;
+}
+
+/* ── RIGHT PANEL CONTENT ── */
+.panel-right-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 16px;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 65%),
+    var(--black-card);
+}
+.panel-floral-right {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.tap-label {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  color: var(--gold);
+  position: relative; z-index: 5;
+  animation: breathe 2.5s ease-in-out infinite;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+.wedding-day-label {
+  font-family: var(--font-cor);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  color: var(--off-white);
+  position: relative; z-index: 5;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 3px;
+  opacity: 0.7;
+}
+
+/* centre seam glow */
+#gate::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(212,175,55,0.5) 30%, rgba(212,175,55,0.5) 70%, transparent 100%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* ══════════════════
+   SCROLL BUTTON
+══════════════════ */
+#scroll-btn {
+  position: fixed; bottom: 28px; right: 24px;
+  width: 46px; height: 46px;
+  background: var(--gold-grad);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 500;
+  box-shadow: 0 4px 18px rgba(212,175,55,0.35);
+  border: none;
+  opacity: 0; pointer-events:none;
+  transition: opacity .5s, transform .2s;
+}
+#scroll-btn.show { opacity:1; pointer-events:auto; }
+#scroll-btn:hover { transform: scale(1.1); }
+#scroll-btn i { color:#000; font-size:1rem; }
+
+/* ═════════════
+   PARTICLES
+═════════════ */
+#pcv { position:fixed; top:0;left:0;width:100%;height:100%; z-index:0; pointer-events:none; }
+.grid-bg {
+  position:fixed; inset:0; z-index:1; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.025) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,0.025) 1px, transparent 1px);
+  background-size:55px 55px;
+}
+.vignette { position:fixed; inset:0; z-index:2; pointer-events:none; background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.8) 100%); }
+
+/* ══════════════
+   MAIN CONTENT
+══════════════ */
+#main { opacity:0; transition: opacity .9s ease; }
+#main.show { opacity:1; }
+section { position:relative; z-index:10; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding: 60px 24px 100px;
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+}
+.hero-eyebrow { font-size:.72rem; letter-spacing:8px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+.hero-names {
+  font-family: var(--font-script);
+  font-size: clamp(3.2rem, 12vw, 5.6rem);
+  line-height:1.05;
+  background: var(--gold-text);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation: shimmer 5s linear infinite;
+  background-size:200% auto;
+}
+.hero-amp { font-family:var(--font-cor); font-size:clamp(1.2rem,4vw,1.8rem); font-style:italic; color:var(--gold); display:block; margin:4px 0; }
+.hero-parent { font-size:.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+.scroll-hint { margin-top:44px; font-size:.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); animation: bounce 2s ease-in-out infinite; }
+
+/* divider */
+.div-row { display:flex; align-items:center; gap:10px; margin:28px auto; width:220px; }
+.div-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.div-gem  { color:var(--gold); font-size:.55rem; }
+
+/* ── BLESSINGS ── */
+.blessings-strip { background:var(--black-soft); border-top:1px solid var(--black-border); border-bottom:1px solid var(--black-border); padding:52px 24px; text-align:center; }
+.blessings-strip h2 { font-family:var(--font-script); font-size:clamp(2rem,7vw,3rem); color:var(--gold); margin-bottom:28px; }
+.parents-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; max-width:480px; margin:0 auto; }
+.parent-box { padding:22px 16px; background:var(--black-card); }
+.parent-box:first-child { border-right:1px solid var(--black-border); }
+.parent-label { font-size:.64rem; letter-spacing:4px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.parent-name  { font-family:var(--font-cor); font-size:1.1rem; font-weight:600; color:var(--off-white); line-height:1.4; }
+
+/* ── EVENTS HEADER ── */
+.events-header { text-align:center; padding:70px 24px 20px; background:var(--black-rich); }
+.events-header .sec-eyebrow { font-size:.66rem; letter-spacing:7px; text-transform:uppercase; color:var(--muted); }
+.events-header h2 { font-family:var(--font-script); font-size:clamp(2.4rem,8vw,3.6rem); color:var(--gold); margin-top:4px; }
+.events-header p  { font-family:var(--font-cor); font-style:italic; color:var(--muted); font-size:.95rem; max-width:320px; margin:10px auto 0; line-height:1.6; }
+
+/* ── EVENT CARD ── */
+.event-section { padding:40px 20px 60px; background:var(--black-rich); display:flex; flex-direction:column; align-items:center; }
+.event-card { width:100%; max-width:400px; background:var(--black-card); border:1px solid var(--black-border); overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.8); }
+.card-art { width:100%; aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.card-art-mehandi { background: radial-gradient(ellipse at 50% 80%, #1a3a1a 0%, #0a1f0a 60%, #050f05 100%); }
+.card-art-barat   { background: radial-gradient(ellipse at 50% 80%, #1a1505 0%, #0f0d02 60%, #060500 100%); }
+.card-art-walima  { background: radial-gradient(ellipse at 50% 80%, #050a1a 0%, #020614 60%, #010308 100%); }
+.art-svg { width:90%; max-width:300px; }
+.card-body { padding:26px 24px 30px; text-align:center; }
+.card-event-script { font-family:var(--font-script); font-size:2.4rem; color:var(--gold); line-height:1; }
+.card-event-title  { font-family:var(--font-cin); font-size:1.1rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; margin:4px 0 0; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.card-divider { width:50px; height:1px; background:var(--gold-grad); margin:16px auto; }
+.card-date-row { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:12px; }
+.card-day { font-family:var(--font-cin); font-size:2.8rem; font-weight:700; line-height:1; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.card-date-right { text-align:left; }
+.card-month { font-size:.72rem; letter-spacing:4px; text-transform:uppercase; color:var(--gold); }
+.card-year  { font-size:.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+.card-times { font-size:.75rem; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin:10px 0 18px; }
+.card-times span { color:var(--gold-light); }
+.venue-lbl { font-size:.64rem; letter-spacing:4px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.map-btn {
+  display:inline-flex; align-items:center; gap:9px;
+  background:var(--gold-grad); color:#000 !important; text-decoration:none;
+  font-family:var(--font-sans); font-size:.72rem; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase; padding:12px 26px;
+  transition:transform .25s, box-shadow .25s; box-shadow:0 4px 18px rgba(212,175,55,0.22);
+}
+.map-btn:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(212,175,55,0.4); }
+
+/* ── RSVP ── */
+.rsvp-section { background:var(--black-soft); border-top:1px solid var(--black-border); padding:60px 24px; text-align:center; }
+.rsvp-section h2 { font-family:var(--font-script); font-size:clamp(2rem,7vw,3rem); color:var(--gold); }
+.rsvp-section p  { font-family:var(--font-cor); font-style:italic; color:var(--muted); margin-top:6px; font-size:.95rem; }
+.rsvp-form { max-width:400px; margin:36px auto 0; display:flex; flex-direction:column; gap:14px; }
+.rsvp-input { background:var(--black-card); border:1px solid var(--black-border); color:var(--white); font-family:var(--font-sans); font-size:.85rem; padding:14px 18px; outline:none; transition:border-color .3s; }
+.rsvp-input:focus { border-color:rgba(212,175,55,0.5); }
+.rsvp-input::placeholder { color:var(--muted); }
+.rsvp-choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.rsvp-btn { padding:13px 10px; border:1px solid var(--black-border); background:var(--black-card); color:var(--muted); font-family:var(--font-sans); font-size:.72rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all .3s; }
+.rsvp-btn:hover,.rsvp-btn.selected-yes { background:var(--gold-grad); color:#000; font-weight:600; border-color:transparent; }
+.rsvp-btn.selected-no { background:var(--black-border); color:var(--muted); border-color:rgba(255,255,255,0.1); }
+
+/* ── NOTE ── */
+.note-section { background:var(--black-rich); border-top:1px solid var(--black-border); padding:60px 24px; text-align:center; }
+.note-section h2 { font-family:var(--font-script); font-size:clamp(2rem,7vw,2.8rem); color:var(--gold); }
+.note-section p  { font-family:var(--font-cor); font-style:italic; color:var(--muted); margin-top:6px; font-size:.92rem; }
+.note-wrap { max-width:400px; margin:32px auto 0; }
+.note-textarea { width:100%; min-height:110px; resize:vertical; background:var(--black-card); border:1px solid var(--black-border); color:var(--white); font-family:var(--font-cor); font-size:1rem; font-style:italic; padding:16px 18px; outline:none; transition:border-color .3s; }
+.note-textarea:focus { border-color:rgba(212,175,55,0.45); }
+.note-textarea::placeholder { color:var(--muted); }
+.note-submit { margin-top:14px; background:var(--gold-grad); border:none; cursor:pointer; font-family:var(--font-sans); font-size:.72rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#000; padding:13px 34px; transition:transform .25s, box-shadow .25s; box-shadow:0 4px 18px rgba(212,175,55,0.22); }
+.note-submit:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(212,175,55,0.38); }
+.note-sent { display:none; color:var(--gold); font-family:var(--font-cor); font-style:italic; margin-top:16px; }
+
+/* ── FOOTER ── */
+.footer { background:var(--black-soft); border-top:1px solid var(--black-border); padding:64px 24px 48px; text-align:center; position:relative; overflow:hidden; }
+.footer::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events:none; }
+.footer h2 { font-family:var(--font-script); font-size:clamp(2.4rem,8vw,3.6rem); background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.1; animation:shimmer 5s linear infinite; background-size:200% auto; }
+.footer-msg { font-family:var(--font-cor); font-style:italic; color:var(--muted); font-size:.95rem; line-height:1.7; max-width:300px; margin:16px auto 0; }
+.footer-sig { font-family:var(--font-cin); font-size:.72rem; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-top:32px; }
+.footer-small { font-size:.62rem; letter-spacing:2px; color:rgba(136,128,112,.4); text-transform:uppercase; margin-top:24px; }
+
+/* ═══════════
+   ANIMATIONS
+═══════════ */
+@keyframes breathe { 0%,100%{opacity:.5;transform:scale(.97)} 50%{opacity:1;transform:scale(1.03)} }
+@keyframes shimmer  { 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes bounce   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* Reveal on scroll */
+.reveal { opacity:0; transform:translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+@media(max-width:420px){
+  .parents-grid{grid-template-columns:1fr;}
+  .parent-box:first-child{border-right:none;border-bottom:1px solid var(--black-border);}
+}
+</style>
+</head>
+<body>
+
+<canvas id="pcv"></canvas>
+<div class="grid-bg"></div>
+<div class="vignette"></div>
+
+<!-- ═══════════════════════════════════
+     TWO-PANEL DOOR GATE
+═══════════════════════════════════ -->
+<div id="gate">
+
+  <!-- LEFT PANEL — botanical floral + wax seal -->
+  <div id="gate-left">
+    <div class="panel-left-inner">
+
+      <!-- Dark botanical SVG fills the whole panel -->
+      <svg class="panel-floral-left" viewBox="0 0 300 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Dark background -->
+        <rect width="300" height="800" fill="#0a0a0a"/>
+        <!-- Gold filigree border frame -->
+        <rect x="6" y="6" width="288" height="788" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+        <rect x="12" y="12" width="276" height="776" fill="none" stroke="rgba(212,175,55,0.12)" stroke-width="0.5"/>
+        <!-- Corner ornaments -->
+        <g stroke="rgba(212,175,55,0.6)" stroke-width="1.2" fill="none">
+          <path d="M6,6 L35,6 M6,6 L6,35"/>
+          <path d="M294,6 L265,6 M294,6 L294,35"/>
+          <path d="M6,794 L35,794 M6,794 L6,765"/>
+          <path d="M294,794 L265,794 M294,794 L294,765"/>
+        </g>
+        <!-- Large lily / floral stem — left side -->
+        <g opacity="0.75">
+          <!-- Main stem -->
+          <path d="M80,800 C75,650 60,500 90,350 C110,250 80,150 100,50" stroke="#2a4a1a" stroke-width="3" fill="none"/>
+          <!-- Leaves -->
+          <path d="M90,650 C60,620 30,590 50,560 C70,535 100,560 90,650" fill="#1a3a0a" opacity="0.8"/>
+          <path d="M85,500 C50,470 20,430 45,400 C65,375 100,400 85,500" fill="#1a3a0a" opacity="0.8"/>
+          <path d="M95,370 C65,340 40,300 70,270 C95,248 115,278 95,370" fill="#1a3a0a" opacity="0.7"/>
+          <!-- Flower blooms -->
+          <g transform="translate(110,320)">
+            <ellipse cx="0" cy="-30" rx="12" ry="22" fill="#1e4a0e" transform="rotate(-20)"/>
+            <ellipse cx="0" cy="-30" rx="12" ry="22" fill="#1e4a0e" transform="rotate(20)"/>
+            <ellipse cx="0" cy="-30" rx="12" ry="22" fill="#1e4a0e" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-30" rx="12" ry="22" fill="#1e4a0e" transform="rotate(100)"/>
+            <circle cx="0" cy="0" r="8" fill="#d4af37" opacity="0.6"/>
+          </g>
+          <g transform="translate(70,180)">
+            <ellipse cx="0" cy="-25" rx="10" ry="20" fill="#162e08" transform="rotate(-30)"/>
+            <ellipse cx="0" cy="-25" rx="10" ry="20" fill="#162e08" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-25" rx="10" ry="20" fill="#162e08" transform="rotate(80)"/>
+            <circle cx="0" cy="0" r="7" fill="#d4af37" opacity="0.5"/>
+          </g>
+        </g>
+        <!-- Right side vine -->
+        <g opacity="0.6">
+          <path d="M220,800 C225,660 240,520 210,380 C190,280 220,170 200,60" stroke="#2a4a1a" stroke-width="2.5" fill="none"/>
+          <path d="M215,700 C245,670 270,645 255,615 C242,592 210,610 215,700" fill="#1a3a0a" opacity="0.7"/>
+          <path d="M210,540 C238,510 260,480 248,450 C238,428 208,445 210,540" fill="#1a3a0a" opacity="0.7"/>
+          <g transform="translate(185,420)">
+            <ellipse cx="0" cy="-20" rx="9" ry="18" fill="#1a400a" transform="rotate(-15)"/>
+            <ellipse cx="0" cy="-20" rx="9" ry="18" fill="#1a400a" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-20" rx="9" ry="18" fill="#1a400a" transform="rotate(95)"/>
+            <circle cx="0" cy="0" r="6" fill="#d4af37" opacity="0.5"/>
+          </g>
+        </g>
+        <!-- Fine gold line details / tendrils -->
+        <g stroke="rgba(212,175,55,0.25)" stroke-width="0.8" fill="none">
+          <path d="M120,400 C140,380 160,390 150,410"/>
+          <path d="M130,250 C150,230 170,245 160,265"/>
+          <path d="M100,550 C120,530 140,545 130,565"/>
+          <path d="M180,480 C200,460 220,475 210,495"/>
+          <path d="M160,330 C175,310 195,322 185,342"/>
+        </g>
+        <!-- Scattered gold dots (fireflies) -->
+        <g fill="rgba(212,175,55,0.35)">
+          <circle cx="45" cy="200" r="1.5"/><circle cx="170" cy="150" r="1"/><circle cx="250" cy="300" r="1.5"/>
+          <circle cx="30" cy="450" r="1"/><circle cx="200" cy="600" r="1.5"/><circle cx="140" cy="700" r="1"/>
+          <circle cx="260" cy="500" r="1.2"/><circle cx="55" cy="620" r="1"/>
+        </g>
+      </svg>
+
+      <!-- Wax Seal -->
+      <div class="door-seal" onclick="openGate()">
+        <span>AA</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL — gold botanical + "Tap to Reveal" + "Wedding Day" -->
+  <div id="gate-right">
+    <div class="panel-right-inner">
+
+      <!-- Gold botanical SVG fills the panel -->
+      <svg class="panel-floral-right" viewBox="0 0 300 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="300" height="800" fill="#080600"/>
+        <!-- Frame -->
+        <rect x="6" y="6" width="288" height="788" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+        <rect x="12" y="12" width="276" height="776" fill="none" stroke="rgba(212,175,55,0.12)" stroke-width="0.5"/>
+        <g stroke="rgba(212,175,55,0.6)" stroke-width="1.2" fill="none">
+          <path d="M6,6 L35,6 M6,6 L6,35"/>
+          <path d="M294,6 L265,6 M294,6 L294,35"/>
+          <path d="M6,794 L35,794 M6,794 L6,765"/>
+          <path d="M294,794 L265,794 M294,794 L294,765"/>
+        </g>
+        <!-- Large gold lily stem -->
+        <g opacity="0.8">
+          <path d="M160,800 C155,650 140,500 170,350 C190,250 160,150 180,50" stroke="#8a6a10" stroke-width="3" fill="none"/>
+          <!-- Leaves gold-toned -->
+          <path d="M165,660 C195,630 225,600 208,570 C193,547 162,565 165,660" fill="#5a4008" opacity="0.85"/>
+          <path d="M170,510 C200,478 228,445 212,415 C198,392 166,410 170,510" fill="#5a4008" opacity="0.85"/>
+          <path d="M165,375 C195,345 220,308 202,278 C188,256 162,276 165,375" fill="#5a4008" opacity="0.8"/>
+          <!-- Gold blooms -->
+          <g transform="translate(145,330)">
+            <ellipse cx="0" cy="-32" rx="13" ry="24" fill="#7a5a0a" transform="rotate(-20)"/>
+            <ellipse cx="0" cy="-32" rx="13" ry="24" fill="#7a5a0a" transform="rotate(20)"/>
+            <ellipse cx="0" cy="-32" rx="13" ry="24" fill="#7a5a0a" transform="rotate(65)"/>
+            <ellipse cx="0" cy="-32" rx="13" ry="24" fill="#7a5a0a" transform="rotate(110)"/>
+            <circle cx="0" cy="0" r="9" fill="#d4af37" opacity="0.8"/>
+            <circle cx="0" cy="0" r="5" fill="#f0c84a" opacity="0.6"/>
+          </g>
+          <g transform="translate(185,185)">
+            <ellipse cx="0" cy="-26" rx="11" ry="20" fill="#6a4a05" transform="rotate(-30)"/>
+            <ellipse cx="0" cy="-26" rx="11" ry="20" fill="#6a4a05" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-26" rx="11" ry="20" fill="#6a4a05" transform="rotate(82)"/>
+            <circle cx="0" cy="0" r="8" fill="#d4af37" opacity="0.75"/>
+          </g>
+        </g>
+        <!-- Left vine gold -->
+        <g opacity="0.65">
+          <path d="M80,800 C85,660 100,520 70,380 C50,280 80,170 60,60" stroke="#8a6a10" stroke-width="2.5" fill="none"/>
+          <path d="M75,710 C45,680 20,650 38,618 C53,592 80,612 75,710" fill="#5a4008" opacity="0.75"/>
+          <path d="M72,550 C42,520 18,488 38,458 C55,434 78,452 72,550" fill="#5a4008" opacity="0.75"/>
+          <g transform="translate(55,430)">
+            <ellipse cx="0" cy="-22" rx="10" ry="19" fill="#6a4a05" transform="rotate(-12)"/>
+            <ellipse cx="0" cy="-22" rx="10" ry="19" fill="#6a4a05" transform="rotate(48)"/>
+            <ellipse cx="0" cy="-22" rx="10" ry="19" fill="#6a4a05" transform="rotate(98)"/>
+            <circle cx="0" cy="0" r="7" fill="#d4af37" opacity="0.65"/>
+          </g>
+        </g>
+        <!-- Fine tendrils gold -->
+        <g stroke="rgba(212,175,55,0.35)" stroke-width="0.9" fill="none">
+          <path d="M140,420 C160,400 182,412 172,432"/>
+          <path d="M155,265 C175,245 196,258 186,278"/>
+          <path d="M105,560 C125,540 145,555 135,575"/>
+          <path d="M200,490 C220,468 240,482 228,502"/>
+        </g>
+        <!-- Sparkle dots gold -->
+        <g fill="rgba(212,175,55,0.5)">
+          <circle cx="55" cy="210" r="1.8"/><circle cx="220" cy="160" r="1.2"/><circle cx="100" cy="310" r="1.5"/>
+          <circle cx="250" cy="460" r="1.8"/><circle cx="40" cy="600" r="1.2"/><circle cx="190" cy="680" r="1.5"/>
+          <circle cx="130" cy="720" r="1"/><circle cx="270" cy="300" r="1.2"/>
+        </g>
+      </svg>
+
+      <!-- Text labels stacked vertically in centre -->
+      <div style="position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;gap:18px;">
+        <span class="tap-label">Tap to Reveal</span>
+        <span class="wedding-day-label">Wedding Day</span>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /#gate -->
+
+<!-- ═════════════════
+     SCROLL BUTTON
+═════════════════ -->
+<button id="scroll-btn" onclick="scrollDown()">
+  <i class="fa-solid fa-chevron-down" id="scroll-icon"></i>
+</button>
+
+<!-- ═══════════════════
+     MAIN CONTENT
+═══════════════════ -->
+<div id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">You are cordially invited to the wedding of</p>
+    <div class="hero-names">
+      Ali Haider<span class="hero-amp">&amp;</span>His Bride
+    </div>
+    <p class="hero-parent">Son of Zulfiqar Ali</p>
+    <div class="div-row"><div class="div-line"></div><span class="div-gem">◆</span><div class="div-line"></div></div>
+    <p style="font-size:.78rem;letter-spacing:5px;text-transform:uppercase;color:var(--muted);">August 2026</p>
+    <p class="scroll-hint" style="margin-top:44px"><i class="fa-solid fa-chevron-down" style="margin-right:6px"></i>Scroll to explore</p>
+  </section>
+
+  <!-- BLESSINGS -->
+  <section class="blessings-strip reveal">
+    <h2>With the Blessings of Our Beloved Parents</h2>
+    <div class="parents-grid">
+      <div class="parent-box">
+        <p class="parent-label">Groom's Family</p>
+        <p class="parent-name">Zulfiqar Ali<br><span style="font-weight:300;font-size:.9rem;color:var(--muted);">&amp; Family</span></p>
+      </div>
+      <div class="parent-box">
+        <p class="parent-label">Bride's Family</p>
+        <p class="parent-name">Together<br><span style="font-weight:300;font-size:.9rem;color:var(--muted);">with our families</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS HEADER -->
+  <section class="events-header reveal">
+    <p class="sec-eyebrow">The Celebration Unfolds</p>
+    <h2>Our Wedding Events</h2>
+    <p>A celebration of sacred traditions and joyful union, crafted with love for you to share in our joy.</p>
+  </section>
+
+  <!-- MEHANDI — 23 August -->
+  <section class="event-section reveal">
+    <div class="event-card">
+      <div class="card-art card-art-mehandi">
+        <svg class="art-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#051005"/>
+          <g fill="rgba(255,230,100,.7)">
+            <circle cx="30" cy="20" r="1"/><circle cx="80" cy="10" r=".8"/><circle cx="140" cy="18" r="1.2"/>
+            <circle cx="200" cy="8" r=".9"/><circle cx="260" cy="22" r="1"/><circle cx="50" cy="40" r=".7"/>
+            <circle cx="110" cy="30" r="1"/><circle cx="240" cy="35" r=".8"/><circle cx="290" cy="12" r="1.1"/>
+          </g>
+          <circle cx="250" cy="30" r="18" fill="#1a3a0a"/>
+          <circle cx="258" cy="26" r="15" fill="#051005"/>
+          <rect x="90" y="60" width="120" height="130" rx="2" fill="#0a1f0a"/>
+          <path d="M90,60 Q150,20 210,60" fill="none" stroke="#3a8a2a" stroke-width="2.5"/>
+          <rect x="92" y="60" width="14" height="130" fill="#0d280d"/>
+          <rect x="194" y="60" width="14" height="130" fill="#0d280d"/>
+          <path d="M90,60 Q120,50 150,48 Q180,50 210,60" fill="none" stroke="#2d6e2d" stroke-width="3" stroke-dasharray="4,3"/>
+          <g fill="#d4af37" opacity=".8">
+            <circle cx="100" cy="58" r="2.5"/><circle cx="120" cy="52" r="2"/><circle cx="140" cy="50" r="2.5"/>
+            <circle cx="160" cy="50" r="2"/><circle cx="180" cy="52" r="2.5"/><circle cx="200" cy="58" r="2"/>
+          </g>
+          <rect x="60" y="185" width="180" height="15" fill="#0d1f0d"/>
+          <ellipse cx="130" cy="175" rx="12" ry="8" fill="#1a3a1a"/>
+          <rect x="124" y="163" width="12" height="13" rx="2" fill="#1a3a1a"/>
+          <ellipse cx="170" cy="175" rx="12" ry="8" fill="#1a3a1a"/>
+          <rect x="164" y="163" width="12" height="13" rx="2" fill="#1a3a1a"/>
+          <text x="150" y="110" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="28" fill="#d4af37" opacity=".9">Mehandi</text>
+          <circle cx="95" cy="62" r="6" fill="#1a4a1a"/><circle cx="95" cy="62" r="3" fill="#2a7a1a"/>
+          <circle cx="205" cy="62" r="6" fill="#1a4a1a"/><circle cx="205" cy="62" r="3" fill="#2a7a1a"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-event-script">Celebration of</div>
+        <div class="card-event-title">MEHANDI</div>
+        <div class="card-divider"></div>
+        <div class="card-date-row">
+          <div class="card-day">23</div>
+          <div class="card-date-right">
+            <div class="card-month">August</div>
+            <div class="card-year">2026</div>
+          </div>
+        </div>
+        <p class="card-times">Evening · <span>Onwards</span></p>
+        <p style="font-family:var(--font-cor);font-style:italic;color:var(--muted);font-size:.9rem;max-width:260px;margin:0 auto 18px;line-height:1.6;">"An evening filled with music, henna, and vibrant memories as we kickstart our festivities."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARAT — 24 August -->
+  <section class="event-section reveal" style="background:var(--black-soft)">
+    <div class="event-card">
+      <div class="card-art card-art-barat">
+        <svg class="art-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#0a0800"/>
+          <g fill="rgba(255,230,100,.6)">
+            <circle cx="25" cy="15" r="1.2"/><circle cx="75" cy="8" r=".9"/><circle cx="155" cy="12" r="1"/>
+            <circle cx="220" cy="18" r=".8"/><circle cx="270" cy="10" r="1.1"/><circle cx="45" cy="35" r=".7"/>
+            <circle cx="130" cy="28" r="1.2"/><circle cx="245" cy="30" r=".9"/>
+          </g>
+          <circle cx="240" cy="28" r="22" fill="rgba(255,220,60,.07)"/>
+          <circle cx="240" cy="28" r="14" fill="#1a1200"/>
+          <circle cx="246" cy="24" r="11" fill="#0a0800"/>
+          <rect x="80" y="55" width="140" height="140" rx="2" fill="#120e01"/>
+          <path d="M80,55 Q150,5 220,55" fill="none" stroke="#8a6a10" stroke-width="2"/>
+          <path d="M80,55 Q150,10 220,55" fill="none" stroke="#d4af37" stroke-width="1" opacity=".5"/>
+          <rect x="82" y="55" width="13" height="140" fill="#1a1502"/>
+          <rect x="205" y="55" width="13" height="140" fill="#1a1502"/>
+          <rect x="82" y="55" width="2" height="140" fill="rgba(212,175,55,.3)"/>
+          <rect x="216" y="55" width="2" height="140" fill="rgba(212,175,55,.3)"/>
+          <line x1="150" y1="30" x2="150" y2="65" stroke="#d4af37" stroke-width="1" opacity=".6"/>
+          <circle cx="150" cy="68" r="5" fill="#d4af37" opacity=".7"/>
+          <g stroke="#d4af37" stroke-width="1" opacity=".5">
+            <line x1="150" y1="68" x2="140" y2="78"/><line x1="150" y1="68" x2="160" y2="78"/>
+            <line x1="150" y1="68" x2="145" y2="80"/><line x1="150" y1="68" x2="155" y2="80"/>
+          </g>
+          <ellipse cx="138" cy="138" rx="9" ry="9" fill="#1a1502"/>
+          <rect x="130" y="147" width="18" height="28" rx="3" fill="#1a1502"/>
+          <ellipse cx="162" cy="138" rx="9" ry="9" fill="#1a1502"/>
+          <path d="M152,147 Q162,175 172,147" fill="#1a1502"/>
+          <text x="150" y="115" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="26" fill="#d4af37" opacity=".9">Barat</text>
+          <g fill="#2a1a02" opacity=".9">
+            <circle cx="100" cy="70" r="7"/><circle cx="200" cy="70" r="7"/>
+            <circle cx="100" cy="70" r="4" fill="#3a2a05"/><circle cx="200" cy="70" r="4" fill="#3a2a05"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-event-script">The Auspicious</div>
+        <div class="card-event-title">BARAT DAY</div>
+        <div class="card-divider"></div>
+        <div class="card-date-row">
+          <div class="card-day">24</div>
+          <div class="card-date-right">
+            <div class="card-month">August</div>
+            <div class="card-year">2026</div>
+          </div>
+        </div>
+        <p class="card-times">Marriage Ceremony · <span>Evening</span></p>
+        <p class="venue-lbl"><i class="fa-solid fa-location-dot" style="color:var(--gold);margin-right:5px"></i>Marriage Hall</p>
+        <a href="https://maps.app.goo.gl/n4vsvP6qEwh623RK9?g_st=iw" target="_blank" class="map-btn">
+          <i class="fa-solid fa-map-pin"></i> Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALIMA — 25 August -->
+  <section class="event-section reveal">
+    <div class="event-card">
+      <div class="card-art card-art-walima">
+        <svg class="art-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#010308"/>
+          <g fill="rgba(200,220,255,.6)">
+            <circle cx="20" cy="12" r="1"/><circle cx="70" cy="6" r=".8"/><circle cx="150" cy="14" r="1.2"/>
+            <circle cx="210" cy="10" r=".9"/><circle cx="275" cy="8" r="1"/><circle cx="50" cy="32" r=".7"/>
+            <circle cx="120" cy="24" r="1.1"/><circle cx="250" cy="28" r=".8"/>
+          </g>
+          <circle cx="248" cy="26" r="16" fill="rgba(200,220,255,.08)"/>
+          <circle cx="248" cy="26" r="10" fill="#010510"/>
+          <circle cx="253" cy="22" r="8" fill="#010308"/>
+          <rect x="70" y="50" width="160" height="145" rx="2" fill="#020510"/>
+          <rect x="72" y="50" width="14" height="145" fill="#040820"/>
+          <rect x="214" y="50" width="14" height="145" fill="#040820"/>
+          <rect x="72" y="50" width="2" height="145" fill="rgba(200,200,255,.2)"/>
+          <rect x="226" y="50" width="2" height="145" fill="rgba(200,200,255,.2)"/>
+          <path d="M70,50 Q150,0 230,50" fill="none" stroke="#3050b0" stroke-width="2"/>
+          <path d="M70,50 Q150,5 230,50" fill="none" stroke="rgba(160,180,255,.4)" stroke-width="1"/>
+          <path d="M90,52 Q150,40 210,52" fill="none" stroke="#204080" stroke-width="2" stroke-dasharray="4,3"/>
+          <g fill="rgba(100,140,220,.7)">
+            <circle cx="100" cy="52" r="3"/><circle cx="130" cy="46" r="3.5"/>
+            <circle cx="150" cy="44" r="4"/><circle cx="170" cy="46" r="3.5"/><circle cx="200" cy="52" r="3"/>
+          </g>
+          <circle cx="150" cy="72" r="18" fill="rgba(160,180,255,.05)"/>
+          <circle cx="150" cy="72" r="4" fill="rgba(200,220,255,.3)"/>
+          <ellipse cx="138" cy="135" rx="9" ry="9" fill="#040820"/>
+          <rect x="130" y="143" width="17" height="30" rx="3" fill="#04082a"/>
+          <ellipse cx="163" cy="135" rx="9" ry="9" fill="#040820"/>
+          <path d="M153,143 Q163,173 173,143" fill="#040820"/>
+          <text x="150" y="112" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="26" fill="#d4af37" opacity=".9">Walima</text>
+          <rect x="72" y="185" width="156" height="10" fill="#040820"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-event-script">The Blessed</div>
+        <div class="card-event-title">WALIMA</div>
+        <div class="card-divider"></div>
+        <div class="card-date-row">
+          <div class="card-day">25</div>
+          <div class="card-date-right">
+            <div class="card-month">August</div>
+            <div class="card-year">2026</div>
+          </div>
+        </div>
+        <p class="card-times">Reception Dinner · <span>Evening Onwards</span></p>
+        <p class="venue-lbl"><i class="fa-solid fa-location-dot" style="color:var(--gold);margin-right:5px"></i>Reception Venue</p>
+        <a href="https://maps.app.goo.gl/NUjuSorYoiLRQjMy5?g_st=iw" target="_blank" class="map-btn">
+          <i class="fa-solid fa-map-location-dot"></i> Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section reveal">
+    <h2>Guest Details</h2>
+    <p>Will you be joining us?</p>
+    <div class="rsvp-form">
+      <input class="rsvp-input" type="text" placeholder="Your Name" id="rsvp-name"/>
+      <input class="rsvp-input" type="text" placeholder="Phone Number" id="rsvp-phone"/>
+      <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">RSVP Status</p>
+      <div class="rsvp-choices">
+        <button class="rsvp-btn" id="btn-yes" onclick="selectRsvp('yes')"><i class="fa-solid fa-check" style="margin-right:6px"></i>Joyfully Accept</button>
+        <button class="rsvp-btn" id="btn-no"  onclick="selectRsvp('no')">Regretfully Decline</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAVE A NOTE -->
+  <section class="note-section reveal">
+    <h2>Leave Us a Note</h2>
+    <p>Share a wish or a blessing</p>
+    <div class="note-wrap">
+      <textarea class="note-textarea" id="note-text" placeholder="Write your heartfelt wishes…" rows="4"></textarea>
+      <div style="text-align:right">
+        <button class="note-submit" onclick="sendNote()">Send Love &nbsp;<i class="fa-solid fa-heart" style="font-size:.8rem"></i></button>
+      </div>
+      <p class="note-sent" id="note-sent">✦ &nbsp;Your wishes have been received with gratitude &nbsp;✦</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer reveal">
+    <div class="div-row" style="margin:0 auto 28px"><div class="div-line"></div><span class="div-gem">◆</span><div class="div-line"></div></div>
+    <h2>With Love &amp; Blessings</h2>
+    <p class="footer-msg">We can't wait to share the beginning of our forever with you. Your presence and prayers mean the world to us.</p>
+    <div class="div-row" style="margin:28px auto"><div class="div-line"></div><span class="div-gem">◆</span><div class="div-line"></div></div>
+    <p class="footer-sig">~ Haider Family ~</p>
+    <p style="font-family:var(--font-cin);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:8px;">Together with our families</p>
+    <p class="footer-small">August 2026 &nbsp;·&nbsp; Ali Haider</p>
+  </footer>
+
+</div><!-- /#main -->
+
+<script>
+/* ── PARTICLES ── */
+const cv = document.getElementById('pcv');
+const cx2 = cv.getContext('2d');
+let W, H, pts = [];
+function resize(){ W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+function mkPt(){ return { x:Math.random()*W, y:H+5, vy:Math.random()*.45+.15, vx:(Math.random()-.5)*.2, r:Math.random()*1.5+.3, a:Math.random()*.4+.15, ph:Math.random()*Math.PI*2 }; }
+for(let i=0;i<70;i++){ const p=mkPt(); p.y=Math.random()*H; pts.push(p); }
+function drawPts(){
+  cx2.clearRect(0,0,W,H);
+  pts.forEach((p,i)=>{
+    p.ph+=.02; p.y-=p.vy; p.x+=p.vx;
+    const a=p.a*(0.7+0.3*Math.sin(p.ph));
+    cx2.beginPath(); cx2.arc(p.x,p.y,p.r,0,Math.PI*2);
+    cx2.fillStyle=`rgba(212,175,55,${a})`; cx2.fill();
+    if(p.y<-5) pts[i]=mkPt();
+  });
+  requestAnimationFrame(drawPts);
+}
+drawPts();
+
+/* ── GATE OPEN ── */
+function openGate(){
+  const gate = document.getElementById('gate');
+  gate.classList.add('open');
+  setTimeout(()=>{
+    document.getElementById('main').classList.add('show');
+    const btn = document.getElementById('scroll-btn');
+    btn.classList.add('show');
+    gate.classList.add('gone');
+  }, 1350);
+}
+
+/* ── SCROLL BUTTON ── */
+function scrollDown(){
+  if(window.scrollY < 100){
+    window.scrollBy({ top: window.innerHeight * .9, behavior:'smooth' });
+  } else {
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+}
+window.addEventListener('scroll',()=>{
+  const icon = document.getElementById('scroll-icon');
+  if(icon) icon.className = window.scrollY > 100 ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+  const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 140;
+  const btn = document.getElementById('scroll-btn');
+  btn.style.opacity = nearBottom ? '0' : '1';
+});
+
+/* ── RSVP ── */
+function selectRsvp(v){
+  document.getElementById('btn-yes').classList.toggle('selected-yes', v==='yes');
+  document.getElementById('btn-no').classList.toggle('selected-no', v==='no');
+}
+
+/* ── NOTE ── */
+function sendNote(){
+  const t = document.getElementById('note-text').value.trim();
+  if(!t) return;
+  document.getElementById('note-text').value='';
+  const msg = document.getElementById('note-sent');
+  msg.style.display='block';
+  setTimeout(()=> msg.style.display='none', 4000);
+}
+
+/* ── REVEAL ON SCROLL ── */
+const revEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{ threshold:.12 });
+revEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
